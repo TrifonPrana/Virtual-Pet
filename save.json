@@ -1,0 +1,81 @@
+{
+    "happiness": 53,
+    "satiety": 24,
+    "health": 100,
+    "money": 34,
+    "coins_per_second": 1,
+    "coins_per_click": 1,
+    "points_record": 8,
+    "clothes": [
+        {
+            "name": "Синяя футболка",
+            "price": 20,
+            "image": "images/items/blue t-shirt.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Красная футболка",
+            "price": 20,
+            "image": "images/items/red t-shirt.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Желтая футболка",
+            "price": 20,
+            "image": "images/items/yellow t-shirt.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Ботинки",
+            "price": 30,
+            "image": "images/items/boots.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Шляпа",
+            "price": 40,
+            "image": "images/items/hat.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Бантик",
+            "price": 25,
+            "image": "images/items/bow.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Кепка",
+            "price": 35,
+            "image": "images/items/cap.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Солнцезащитные очки",
+            "price": 35,
+            "image": "images/items/sunglasses.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Серебряная цепочка",
+            "price": 70,
+            "image": "images/items/silver chain.png",
+            "is_using": false,
+            "is_bought": false
+        },
+        {
+            "name": "Золотая цепочка",
+            "price": 125,
+            "image": "images/items/gold chain.png",
+            "is_using": false,
+            "is_bought": false
+        }
+    ]
+}
