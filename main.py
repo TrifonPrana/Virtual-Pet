@@ -510,7 +510,6 @@ class Dog(pg.sprite.Sprite):
     def draw(self,screen):
         screen.blit(self.image,self.rect)
 
-#это изменение типа
 class Game:
     def __init__(self):
         #Создание окна
