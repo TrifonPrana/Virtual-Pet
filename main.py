@@ -377,27 +377,39 @@ class Food:
 class Upgrades_Menu:
     def __init__(self,game):
         self.game = game
-        self.menu_page = load_image("images/menu/menu_page.png",SCREEN_WIDTH,SCREEN_HEIGHT)
+        self.menu_page = load_image("images/game_background.png",SCREEN_WIDTH,SCREEN_HEIGHT)
 
         self.current_item = 0
 
-        self.items = ["+1 за клик","+10 за клик"]
         #Создаем кнопки
-        self.next_button = Button("Вперед",SCREEN_WIDTH - BUTTON_WIDTH - GRID*8,SCREEN_HEIGHT - GRID*14
-        ,width=BUTTON_WIDTH//1.2,height=BUTTON_HEIGHT//1.2,func=self.to_next)
+        self.plus_one_by_click_button = Button("+1 за клик(40 монет )",GRID*13.5,SCREEN_HEIGHT - GRID*25
+        ,width=BUTTON_WIDTH*1.5,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_click(1))
 
-        self.back_button = Button("Назад",GRID*12,SCREEN_HEIGHT - GRID*14
-        ,width=BUTTON_WIDTH//1.2,height=BUTTON_HEIGHT//1.2,func=self.to_previous)
+        self.plus_five_by_click_button = Button("+5 за клик(200 монет)",GRID*13.5,SCREEN_HEIGHT - GRID*31.5
+        ,width=BUTTON_WIDTH*1.5,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_click(5))
+
+
+        self.plus_one_by_second_button = Button("+1 в секунду(35 монет)",GRID*45.5,SCREEN_HEIGHT - GRID*25
+        ,width=BUTTON_WIDTH*1.7,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_second(1))
+
+        self.plus_five_by_second_button = Button("+5 в секунду(175 монет)",GRID*45.5,SCREEN_HEIGHT - GRID*31.5
+        ,width=BUTTON_WIDTH*1.7,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_second(5))
     def draw(self,screen):  
             screen.blit(self.menu_page,(0,0))
-    def to_next(self):
-        if self.current_item +1 != len(self.items):
-            self.current_item +=1
-            self.render_item()
-    def to_previous(self):
-        if not self.current_item -1 <0:
-            self.current_item -=1
-            self.render_item()
+
+            self.plus_one_by_click_button.draw(screen)
+            self.plus_five_by_click_button.draw(screen)
+
+            self.plus_one_by_second_button.draw(screen)
+            self.plus_five_by_second_button.draw(screen)
+    def buy_plus_x_by_click(self,number):
+        if self.game.money >= 40*number:
+            self.game.coins_per_click +=number
+            self.game.money -=40*number
+    def buy_plus_x_by_second(self,number):
+        if self.game.money >= 35*number:
+            self.game.coins_per_second +=number
+            self.game.money -=35*number
 
 class Game_Menu:
     def __init__(self,game):
@@ -657,8 +669,11 @@ class Game:
                 self.food_menu.back_button.is_clicked(event)
                 self.food_menu.buy_eat_button.is_clicked(event)
             elif self.mode == "Upgrades menu":
-                self.upgrades_menu.next_button.is_clicked(event)
-                self.upgrades_menu.back_button.is_clicked(event)
+                self.upgrades_menu.plus_one_by_click_button.is_clicked(event)
+                self.upgrades_menu.plus_five_by_click_button.is_clicked(event)
+
+                self.upgrades_menu.plus_one_by_second_button.is_clicked(event)
+                self.upgrades_menu.plus_five_by_second_button.is_clicked(event)
             #elif self.mode == "Game over":
             #    self.new_game_button.is_clicked(event)
                 
