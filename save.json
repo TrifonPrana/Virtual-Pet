@@ -1,11 +1,11 @@
 {
-    "happiness": 53,
-    "satiety": 24,
+    "happiness": 52,
+    "satiety": 30,
     "health": 100,
-    "money": 34,
+    "money": 24,
     "coins_per_second": 1,
     "coins_per_click": 1,
-    "points_record": 8,
+    "points_record": 25,
     "clothes": [
         {
             "name": "Синяя футболка",

@@ -23,6 +23,10 @@ GRID = 10
 
 FPS = 60
 
+with open("save.json","r",encoding="utf-8") as f:
+            data =json.load(f)
+            points_record = data["points_record"]
+
 new_game_data = {
     "happiness": 50,
     "satiety": 30,
@@ -30,7 +34,7 @@ new_game_data = {
     "money": 15,
     "coins_per_second": 1,
     "coins_per_click": 1,
-    "points_record": 0,
+    "points_record": points_record,
     "costs_of_upgrade": {
         "100": False,
         "1000": False,
@@ -404,7 +408,7 @@ class Game_Menu:
         self.points_text = text_render(f"Очки: {self.points}.")
         self.points_text_rect = self.points_text.get_rect()
         self.points_text_rect.center = (GRID*70,GRID*10)
-
+        global points_record
         self.points_record = 0
         self.points_record_text = text_render(f"Рекорд: {self.points_record}.")
         self.points_record_text_rect = self.points_text.get_rect()
@@ -434,7 +438,7 @@ class Game_Menu:
             self.game.happiness +=1
             self.points_text = text_render(f"Очки: {self.points}.")
 
-
+        global points_record
         if self.points >= self.points_record:
             self.points_record=self.points
 
@@ -655,8 +659,8 @@ class Game:
             elif self.mode == "Upgrades menu":
                 self.upgrades_menu.next_button.is_clicked(event)
                 self.upgrades_menu.back_button.is_clicked(event)
-            # elif self.mode == "Game over":
-            #     self.new_game_button.is_clicked(event)
+            #elif self.mode == "Game over":
+            #    self.new_game_button.is_clicked(event)
                 
     def update(self):
         if self.health <=0:
