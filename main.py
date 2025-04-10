@@ -382,17 +382,17 @@ class Upgrades_Menu:
         self.current_item = 0
 
         #Создаем кнопки
-        self.plus_one_by_click_button = Button("+1 за клик(40 монет )",GRID*13.5,SCREEN_HEIGHT - GRID*25
+        self.plus_one_by_click_button = Button("+1 за клик(75 монет )",GRID*13.5,SCREEN_HEIGHT - GRID*25
         ,width=BUTTON_WIDTH*1.5,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_click(1))
 
-        self.plus_five_by_click_button = Button("+5 за клик(200 монет)",GRID*13.5,SCREEN_HEIGHT - GRID*31.5
+        self.plus_five_by_click_button = Button("+5 за клик(375 монет)",GRID*13.5,SCREEN_HEIGHT - GRID*31.5
         ,width=BUTTON_WIDTH*1.5,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_click(5))
 
 
-        self.plus_one_by_second_button = Button("+1 в секунду(35 монет)",GRID*45.5,SCREEN_HEIGHT - GRID*25
+        self.plus_one_by_second_button = Button("+1 в секунду(65 монет)",GRID*45.5,SCREEN_HEIGHT - GRID*25
         ,width=BUTTON_WIDTH*1.7,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_second(1))
 
-        self.plus_five_by_second_button = Button("+5 в секунду(175 монет)",GRID*45.5,SCREEN_HEIGHT - GRID*31.5
+        self.plus_five_by_second_button = Button("+5 в секунду(325 монет)",GRID*45.5,SCREEN_HEIGHT - GRID*31.5
         ,width=BUTTON_WIDTH*1.7,height=BUTTON_HEIGHT,func=lambda: self.buy_plus_x_by_second(5))
     def draw(self,screen):  
             screen.blit(self.menu_page,(0,0))
@@ -402,14 +402,21 @@ class Upgrades_Menu:
 
             self.plus_one_by_second_button.draw(screen)
             self.plus_five_by_second_button.draw(screen)
+
+            self.x_by_click_text = text_render(f"За клик: {self.game.coins_per_click}")
+            self.x_by_second_text = text_render(f"В секунду: {self.game.coins_per_second}")
+
+            screen.blit(self.x_by_click_text,(SCREEN_WIDTH-GRID*75.5,SCREEN_HEIGHT-GRID*11.5))
+            screen.blit(self.x_by_second_text,(SCREEN_WIDTH-GRID*28.5,SCREEN_HEIGHT-GRID*11.5))
+
     def buy_plus_x_by_click(self,number):
-        if self.game.money >= 40*number:
+        if self.game.money >= 75*number:
             self.game.coins_per_click +=number
-            self.game.money -=40*number
+            self.game.money -=75*number
     def buy_plus_x_by_second(self,number):
-        if self.game.money >= 35*number:
+        if self.game.money >= 65*number:
             self.game.coins_per_second +=number
-            self.game.money -=35*number
+            self.game.money -=65*number
 
 class Game_Menu:
     def __init__(self,game):
@@ -714,6 +721,12 @@ class Game:
         self.eat_button.draw(self.screen)
         self.upgrades_button.draw(self.screen)
         self.play_button.draw(self.screen)
+
+        self.x_by_click_text = text_render(f"За клик: {self.coins_per_click}")
+        self.x_by_second_text = text_render(f"В секунду: {self.coins_per_second}")
+
+        self.screen.blit(self.x_by_click_text,(SCREEN_WIDTH-GRID*89,SCREEN_HEIGHT-GRID*3.5))
+        self.screen.blit(self.x_by_second_text,(SCREEN_WIDTH-GRID*18,SCREEN_HEIGHT-GRID*3.5))
 
         for item in self.clothes_menu.items:
                 if item.is_using:
